@@ -1,0 +1,20 @@
+version: "3"
+services:
+  node-app:
+    build: .
+    environment:
+      - NODE_ENV=development
+    #önce mongonun çalışmasını bekler sonra node-app çalışır
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    volumes:
+      - mongo-db:/data/db
+volumes:
+  mongo-db:
