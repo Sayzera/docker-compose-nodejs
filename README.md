@@ -119,3 +119,9 @@
 - |-- kaydet ve çıkış yapar
 - set -o allexport; source /root/.env
 - |-- .env dosyasındaki değişkenleri env değişkenlerine aktarır, bu sayede docker-compose içerisinde env dosyasındaki değişkenleri kullanabiliriz. Env dosyasındaki değişkenler kabuk ortamında geçerli olur.
+
+* ====================== Ubuntu Cloud =====================================
+  - mkdir app
+  - |-- app klasörü oluşturur
+  - git clone https://github.com/Sayzera/docker-compose-nodejs .
+  - |-- . git klasörünü oluşturur
