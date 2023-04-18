@@ -1,5 +1,11 @@
-version: "3"
+version: '3'
 services:
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - 3000:80
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:rw
   node-app:
     build:
       context: .
@@ -16,9 +22,9 @@ services:
       - MONGO_PORT=27017
       - MONGO_HOST=mongo
       - MONGO_DB=admin
-      - SESSON_SECRET=AYRSACU......q1w2e3r4t5y6u7i8o9p0
-    ports:
-      - "3000:3000"
+      - SESSION_SECRET=AYRSACU......q1w2e3r4t5y6u7i8o9p0
+      - REDIS_URL=redis
+      - REDIS_PORT=6379
     command: npm run dev
   mongo:
     environment:

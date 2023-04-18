@@ -1,28 +1,32 @@
-const express = require("express")
-const mongoose = require("mongoose")
+const express = require('express')
+const mongoose = require('mongoose')
 const app = express()
-const session = require("express-session")
-const redis = require("redis")
-const RedisStore = require("connect-redis").default
+const session = require('express-session')
+const redis = require('redis')
+const RedisStore = require('connect-redis').default
+const cors = require('cors')
 
 let redisClient = redis.createClient({
-  legacyMode: true,
+  // legacyMode: true, for windows
 
   socket: {
-    host: process.env.REDIS_URL || "redis",
-    port: process.env.REDIS_PORT || "6379",
+    host: process.env.REDIS_URL || 'redis',
+    port: process.env.REDIS_PORT || '6379',
   },
 })
 redisClient
   .connect()
-  .then(() => console.log("Connected to Redis"))
+  .then(() => console.log('Connected to Redis'))
   .catch((err) => console.log(err))
 
 let redisStore = new RedisStore({
   client: redisClient,
-  prefix: "myapp:",
+  prefix: 'myapp:',
 })
 
+app.enable('trust proxy')
+
+app.use(cors({}))
 app.use(
   session({
     store: redisStore,
@@ -32,7 +36,7 @@ app.use(
       resave: true,
       saveUninitialized: false,
       httpOnly: true,
-      maxAge: 30000,
+      maxAge: 3000000, // tutulan cookie 5 dk sonra redisten ve çerezden silinir
     },
   })
 )
@@ -43,7 +47,7 @@ const {
   MONGO_PASSWORD,
   MONGO_IP,
   MONGO_PORT,
-} = require("./config/config")
+} = require('./config/config')
 
 const port = process.env.PORT || 3000
 const connectWithRetry = () => {
@@ -51,7 +55,7 @@ const connectWithRetry = () => {
   mongoose
     .connect(MongoURL)
     .then(() => {
-      console.log("Connected to MongoDB")
+      console.log('Connected to MongoDB')
     })
     .catch((err) => {
       console.log(e)
@@ -63,12 +67,18 @@ const connectWithRetry = () => {
 //  docker inspect  docker-node-mongo-1 detaylı aramadan ip vs bilgilerine ulaşılabilir.
 connectWithRetry()
 
-const postRouter = require("./routes/postRoutes")
-const userRouter = require("./routes/userRoutes")
+const postRouter = require('./routes/postRoutes')
+const userRouter = require('./routes/userRoutes')
+const protect = require('./middleware/authMiddleware')
 
-app.use("/api/v1/posts", postRouter)
-app.use("/api/v1/users", userRouter)
+app.get('/api/v1', (req, res) => {
+  res.send('<h2>Hi there</h2>')
+  console.log('node app is running')
+})
+
+app.use('/api/v1/posts', protect, postRouter)
+app.use('/api/v1/users', userRouter)
 
 app.listen(port, () => {
-  console.log("Server is up on port " + port)
+  console.log('Server is up on port ' + port)
 })

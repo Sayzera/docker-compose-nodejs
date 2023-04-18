@@ -55,9 +55,13 @@
   - docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml down -v
 
   - docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d --build
+
+  - docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d --scale node-app=2
+    |-- node-app=2 2 tane node-app containerı oluşturur
   - |-- --build yeni bir modül var dockerı tekrardan oluştur demek
 
 * ====================== MONGO DB =====================================
+
   - docker exec -it docker-node-mango-1 mongosh -u "admin" -p "admin"
   - |-- windows üzerinden docker shell açma
   - use mydb
@@ -68,3 +72,23 @@
   - |--Tümünü seçer getirir
   - show dbs
   - |--dbleri gösterir
+
+* ====================== Redis =====================================
+
+- docker exec -it docker-compose-nodejs-redis-1 redis-cli
+- |-- redis shell açma
+- keys \*
+- |-- tüm keyleri gösterir
+- get key
+- |-- keyin değerini gösterir
+- set key value
+- |-- keyin değerini set eder
+- del key
+- |-- keyi siler
+- flushall
+- |-- tüm keyleri siler
+- exit
+- |-- çıkış yapar
+
+* ====================== PORT =====================================
+  -Nginx konteynırı, genellikle HTTP trafiğini dinlemek için 80 numaralı portu kullanır. Docker Compose dosyasındaki port yönlendirme ayarı, nginx konteynırının 80 numaralı portunu host makinanın 3000 numaralı portuna bağlamaktadır. Bu sayede, host makinadaki 3000 numaralı port üzerinden gelen istekler nginx konteynırına yönlendirilerek, nginx servisinin çalıştığı konteynıra ulaşılmasını sağlar.
