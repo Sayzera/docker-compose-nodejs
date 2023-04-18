@@ -58,7 +58,6 @@ const connectWithRetry = () => {
       console.log('Connected to MongoDB')
     })
     .catch((err) => {
-      console.log(e)
       setTimeout(connectWithRetry, 5000)
     })
 }

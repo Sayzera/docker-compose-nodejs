@@ -124,6 +124,8 @@
 - |-- .env dosyasındaki değişkenleri env değişkenlerine aktarır, bu sayede docker-compose içerisinde env dosyasındaki değişkenleri kullanabiliriz. Env dosyasındaki değişkenler kabuk ortamında geçerli olur.
 
 * ====================== Ubuntu Cloud =====================================
+  - ssh root@138.197.177.18
+  - |-- cloud sunucuya bağlanma
   - mkdir app
   - |-- app klasörü oluşturur
   - cd app
