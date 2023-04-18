@@ -96,6 +96,9 @@
 * ====================== Ubuntu =====================================
 
 - export SESSION_SECRET=secret
+- curl ifconfig.me
+- | ip adresini gösterir
+
 - | ls -la
 - | |-- dosyaları listeler
 - |-- env değişkeni oluşturur
@@ -123,5 +126,6 @@
 * ====================== Ubuntu Cloud =====================================
   - mkdir app
   - |-- app klasörü oluşturur
+  - cd app
   - git clone https://github.com/Sayzera/docker-compose-nodejs .
   - |-- . git klasörünü oluşturur
