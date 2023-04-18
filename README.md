@@ -92,3 +92,30 @@
 
 * ====================== PORT =====================================
   -Nginx konteynırı, genellikle HTTP trafiğini dinlemek için 80 numaralı portu kullanır. Docker Compose dosyasındaki port yönlendirme ayarı, nginx konteynırının 80 numaralı portunu host makinanın 3000 numaralı portuna bağlamaktadır. Bu sayede, host makinadaki 3000 numaralı port üzerinden gelen istekler nginx konteynırına yönlendirilerek, nginx servisinin çalıştığı konteynıra ulaşılmasını sağlar.
+
+* ====================== Ubuntu =====================================
+
+- export SESSION_SECRET=secret
+- | ls -la
+- | |-- dosyaları listeler
+- |-- env değişkeni oluşturur
+- export PORT=3000
+- |-- env değişkeni oluşturur
+- printenv
+- |-- env değişkenlerini gösterir
+- vi .env
+- |-- .env dosyasını açar
+- :w
+- |-- kaydet
+- :q
+- |-- çıkış yapar
+- :wq
+- |-- kaydet ve çıkış yapar
+- :q!
+- |-- çıkış yapar
+- :w!
+- |-- kaydet
+- :wq!
+- |-- kaydet ve çıkış yapar
+- set -o allexport; source /root/.env
+- |-- .env dosyasındaki değişkenleri env değişkenlerine aktarır, bu sayede docker-compose içerisinde env dosyasındaki değişkenleri kullanabiliriz. Env dosyasındaki değişkenler kabuk ortamında geçerli olur.
