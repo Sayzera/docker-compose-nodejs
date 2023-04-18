@@ -11,6 +11,8 @@
   - | docker containerın ayrıntılı bilgisini verir
   - docker network ls
   - | Docker ağlarını listeler
+  - docker logs -f <container-id>
+  - | docker çıktılarını anlık görmemizi sağlar
 
   -3000= bilgisayarın portu diğer 3000 dockerın içindeki uygulamanın portu
 

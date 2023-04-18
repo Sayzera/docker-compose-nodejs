@@ -16,6 +16,7 @@ services:
       - MONGO_PORT=27017
       - MONGO_HOST=mongo
       - MONGO_DB=admin
+      - SESSON_SECRET=AYRSACU......q1w2e3r4t5y6u7i8o9p0
     ports:
       - "3000:3000"
     command: npm run dev

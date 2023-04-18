@@ -5,4 +5,7 @@ module.exports = {
   MONGO_PASSWORD: process.env.MONGO_PASSWORD || "admin",
   MONGO_DB: process.env.MONGO_DB || "admin",
   PORT: process.env.PORT || 3000,
+  REDIS_URL: process.env.REDIS_URL || "redis",
+  REDIS_PORT: process.env.REDIS_PORT || "6379",
+  SESSION_SECRET: process.env.SESSION_SECRET,
 }
