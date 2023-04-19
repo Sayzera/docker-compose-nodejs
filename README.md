@@ -20,6 +20,17 @@
   - |-- docker hubdan indirir
   - docker image tag node-app-image sayzera1/node-app-image
   - |-- bu imajı sayzera1/node-app-image olarak etiketler
+  - docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml build node-app
+  - |-- docker-compose ile node-app serviceini yeniden oluşturur
+  - docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml push node-app
+  - |-- docker-compose ile node-app serviceini prod ortamına yükler
+    ---> docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml pull
+    |-- docker-hubdan prod ortamına ait imajları indirir ve docker-compose ile çalıştırır
+    - Localdeki image build edilir
+    - Docker huba push edilir
+    - Docker hubdan pull edilir
+    - Docker compose ile çalıştırılır (açık ise önce kapatılır)
+    - Örnek -> docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml up -d --build --force-recreate
 
   -3000= bilgisayarın portu diğer 3000 dockerın içindeki uygulamanın portu
 
@@ -146,3 +157,10 @@
   - cd app
   - git clone https://github.com/Sayzera/docker-compose-nodejs .
   - |-- . git klasörünü oluşturur
+
+\*= ====================== servera atmak için =====================================
+
+- [local] build docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml build
+- [docker-hub] docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml push
+- [server] docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml pull
+- [server] ocker-compose -f docker-compose.yaml -f docker-compose.prod.yaml up -d
