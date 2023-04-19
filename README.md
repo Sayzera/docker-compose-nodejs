@@ -183,3 +183,21 @@
 - docker rm watchtower
 - |-- watchtower containerı siler
 - |- -e parametresi watchtower için belirli ortam değişkenlerinin ayarlanmasına olanak tanır ve bu değişkenler watchtower containerı içerisinde kullanılabilir hale gelir.
+
+* ====================== Docker Swarm =====================================
+
+- ip add
+- |-- ip adreslerini gösterir > eth2 de yazan ip adresini alırız
+- docker swarm init --advertise-addr <ip>
+- |-- swarm oluşturur
+
+* ====================== Replicas =====================================
+  deploy:
+  replicas: 2
+  Yüksek kullanılabilirlik: Servis, bir kopyasında arıza olması durumunda diğer kopyaları tarafından hizmet vermeye devam edebilir. Bu sayede uygulamanın kesintiye uğraması engellenir.
+
+  Yüksek performans: Birden fazla kopya, uygulamanın daha yüksek performansla çalışmasını sağlar. Örneğin, yüksek trafikli bir uygulamada bir kopya, talepleri işlemeye yetmeyebilir, ancak birden fazla kopya, talepleri paralel olarak işleyerek daha yüksek performans sağlar.
+
+  Yüksek ölçeklenebilirlik: Servis, artan taleplere göre daha fazla kopya ile ölçeklendirilebilir. Bu sayede uygulama, artan taleplere göre hızlıca ölçeklendirilebilir ve yüksek trafik altında bile performans kaybı yaşanmaz.
+
+  Yüksek güvenilirlik: Servisin birden fazla kopyası, uygulamanın daha güvenilir olmasını sağlar. Örneğin, bir kopyasında bir güvenlik açığı bulunması durumunda, diğer kopyalar bu açığı kapatabilir ve uygulamanın güvenliği sağlanabilir.
