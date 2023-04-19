@@ -160,7 +160,26 @@
 
 \*= ====================== servera atmak için =====================================
 
-- [local] build docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml build
+- [local] docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml build
 - [docker-hub] docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml push
 - [server] docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml pull
-- [server] ocker-compose -f docker-compose.yaml -f docker-compose.prod.yaml up -d
+- [server] docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml up -d
+  - alternatif [server] docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml up -d --no-deps node-app
+
+* ====================== Dockert Towers =====================================
+
+- [towerWatch] docker run -d --name watchtower -e WATCHTOWER_TRACE=true -e WATCHTOWER_DEBUG=true -e WATCHTOWER_POLL_INTERVAL=50 -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower <container adı>
+- |-- watchtower containerı oluşturur
+- |-- -e WATCHTOWER_POLL_INTERVAL=50 50 saniyede bir kontrol eder
+- |-- -e WATCHTOWER_TRACE=true logları gösterir
+- |-- -e WATCHTOWER_DEBUG=true logları gösterir
+- |-- -v /var/run/docker.sock:/var/run/docker.sock docker socket bağlantısı
+- |-- containrrr/watchtower watchtower image
+- |-- <container adı> container adı
+- docker logs watchtower
+- |-- watchtower loglarını gösterir
+- docker stop watchtower
+- |-- watchtower containerı durdurur
+- docker rm watchtower
+- |-- watchtower containerı siler
+- |- -e parametresi watchtower için belirli ortam değişkenlerinin ayarlanmasına olanak tanır ve bu değişkenler watchtower containerı içerisinde kullanılabilir hale gelir.
