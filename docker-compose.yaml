@@ -6,6 +6,7 @@ services:
       - 3000:80
   node-app:
     build: .
+    image: sayzera1/node-app-dc
     environment:
       - NODE_ENV=development
     #önce mongonun çalışmasını bekler sonra node-app çalışır

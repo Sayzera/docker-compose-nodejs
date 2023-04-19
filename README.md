@@ -13,6 +13,13 @@
   - | Docker ağlarını listeler
   - docker logs -f <container-id>
   - | docker çıktılarını anlık görmemizi sağlar
+  - docker build -t node-app-image .
+  - docker push sayzera1/node-app-image
+  - |-- docker huba yükler
+  - docker pull sayzera1/node-app-image
+  - |-- docker hubdan indirir
+  - docker image tag node-app-image sayzera1/node-app-image
+  - |-- bu imajı sayzera1/node-app-image olarak etiketler
 
   -3000= bilgisayarın portu diğer 3000 dockerın içindeki uygulamanın portu
 
@@ -55,6 +62,14 @@
   - docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml down -v
 
   - docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d --build
+
+  - docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d --build --no-deps node-app
+    |-- node-app serviceini yeniden oluşturur
+    |-- --no-deps node-app serviceini yeniden oluşturur ancak bağımlılıklarını oluşturmaz örneğin mongo db , redis gibi bunları tekrardan başlatmaz
+
+  - docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d --build --force-recreate
+    |-- node-app serviceini yeniden oluşturur
+    |-- --force-recreate node-app serviceini yeniden oluşturur ancak bağımlılıklarını oluşturmaz örneğin mongo db , redis gibi bunları tekrardan başlatmaz
 
   - docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d --scale node-app=2
     |-- node-app=2 2 tane node-app containerı oluşturur
