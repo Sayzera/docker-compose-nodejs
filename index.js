@@ -71,7 +71,7 @@ const userRouter = require('./routes/userRoutes')
 const protect = require('./middleware/authMiddleware')
 
 app.get('/api/v1', (req, res) => {
-  res.send('<h2>Hi there  Docker Watchtower !!!!! <h2>')
+  res.send('<h2>Hi there  Docker Watchtower 20.04.2023 !!!!! <h2>')
   console.log('node app is running')
 })
 

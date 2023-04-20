@@ -3,16 +3,16 @@ services:
   nginx:
     image: nginx:stable-alpine
   node-app:
-    # deploy:
-    #   #replicas: 8: Bu özellik, node-app servisinin 8 adet kopyasını çalıştıracağını belirtir. Bu, servisin yüksek kullanım oranları veya yük dalgaları altında daha fazla ölçeklenebilmesini sağlar.
-    #   replicas: 8
-    #   #restart_policy: Bu özellik, bir kopyanın çökmesi veya hata vermesi durumunda ne yapılacağını belirtir. condition: any seçeneği, herhangi bir durumda kopyanın yeniden başlatılmasını sağlar.
-    #   restart_policy:
-    #     condition: any
-    #   update_config:
-    #     #parallelism: 2 seçeneği, güncelleme sırasında en fazla 2 kopyanın aynı anda güncellenmesine izin verir. delay: 15s seçeneği, güncelleme işlemleri arasında 15 saniye bekleme süresi tanır. Bu, servis güncellemelerinin daha güvenli ve istikrarlı bir şekilde yapılmasını sağlar.
-    #     parallelism: 2
-    #     delay: 15s
+    deploy:
+      #replicas: 8: Bu özellik, node-app servisinin 8 adet kopyasını çalıştıracağını belirtir. Bu, servisin yüksek kullanım oranları veya yük dalgaları altında daha fazla ölçeklenebilmesini sağlar.
+      replicas: 6
+      #restart_policy: Bu özellik, bir kopyanın çökmesi veya hata vermesi durumunda ne yapılacağını belirtir. condition: any seçeneği, herhangi bir durumda kopyanın yeniden başlatılmasını sağlar.
+      restart_policy:
+        condition: any
+      update_config:
+        #parallelism: 2 seçeneği, güncelleme sırasında en fazla 2 kopyanın aynı anda güncellenmesine izin verir. delay: 15s seçeneği, güncelleme işlemleri arasında 15 saniye bekleme süresi tanır. Bu, servis güncellemelerinin daha güvenli ve istikrarlı bir şekilde yapılmasını sağlar.
+        parallelism: 2
+        delay: 15s
     build: .
     image: sayzera1/node-app-dc
     environment:

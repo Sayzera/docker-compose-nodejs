@@ -146,7 +146,8 @@
 - |-- kaydet
 - :wq!
 - |-- kaydet ve çıkış yapar
-- set -o allexport; source /root/.env
+- set -o allexport; source /root/.env; set +o allexport
+- |-- kök dizindeki .profile dosyasının en altına yazılır
 - |-- .env dosyasındaki değişkenleri env değişkenlerine aktarır, bu sayede docker-compose içerisinde env dosyasındaki değişkenleri kullanabiliriz. Env dosyasındaki değişkenler kabuk ortamında geçerli olur.
 
 * ====================== Ubuntu Cloud =====================================
@@ -187,7 +188,7 @@
 * ====================== Docker Swarm =====================================
 
 - ip add
-- |-- ip adreslerini gösterir > eth2 de yazan ip adresini alırız
+- |-- ip adreslerini gösterir > eth0 de yazan ip adresini alırız
 - docker swarm init --advertise-addr <ip>
 - |-- swarm oluşturur
 - docker stack deploy -c docker-compose.yaml -c docker-compose.prod.yaml myapp
