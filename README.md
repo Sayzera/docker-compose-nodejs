@@ -190,6 +190,8 @@
 - |-- ip adreslerini gösterir > eth2 de yazan ip adresini alırız
 - docker swarm init --advertise-addr <ip>
 - |-- swarm oluşturur
+- docker stack deploy -c docker-compose.yaml -c docker-compose.prod.yaml myapp
+- |-- stack oluşturur
 
 * ====================== Replicas =====================================
   deploy:
