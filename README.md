@@ -193,8 +193,37 @@
 - |-- swarm oluşturur
 - docker stack deploy -c docker-compose.yaml -c docker-compose.prod.yaml myapp
 - |-- stack oluşturur
+- docker stack ls
+- |-- stack listesini gösterir
+- docker stack rm myapp
+- |-- stack siler
+- docker stack services myapp
+- |-- stack servislerini gösterir
+- docker stack ps myapp
+- |-- stack processlerini gösterir
 
-* ====================== Replicas =====================================
+* update
+  [local] docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml build
+  [local] docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml push
+  <!-- [server] docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml pull -->
+
+  [server] docker stack deploy -c docker-compose.yaml -c docker-compose.prod.yaml myapp
+
+  \*====================== Swap =====================================
+
+- sudo swapoff -a
+  |-- swap kapatır
+
+- sudo dd if=/dev/zero of=/swapfile bs=1M count=1024
+  |-- swapfile oluşturur
+
+-sudo mkswap /swapfile
+|-- swapfile oluşturur
+
+sudo swapon /swapfile
+|-- swapfile oluşturur
+
+- ====================== Replicas =====================================
   deploy:
   replicas: 2
   Yüksek kullanılabilirlik: Servis, bir kopyasında arıza olması durumunda diğer kopyaları tarafından hizmet vermeye devam edebilir. Bu sayede uygulamanın kesintiye uğraması engellenir.
